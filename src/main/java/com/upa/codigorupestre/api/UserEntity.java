@@ -16,7 +16,7 @@ public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String name;
 	
 	private String lastName;
@@ -26,5 +26,8 @@ public class UserEntity {
 	private String userName;
 	
 	private String password;
-
+	
+	
+	
+	
 }
