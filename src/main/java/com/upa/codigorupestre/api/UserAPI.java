@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.upa.codigorupestre.service.MailService;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -25,10 +27,16 @@ public class UserAPI {
 	@Autowired
 	private UserRepository repository;
 	
+	@Autowired
+	private MailService mailService;
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Object> creteUser(@RequestBody UserEntity user) {
         log.info("Create USER - POST {} ", user);
 		repository.save(user);
+		
+		String fullName = user.getName() + " " + user.getLastName();
+		mailService.sendMailConfirmAccount(user.getEmail(), fullName, user.getPlanet());
 		return ResponseEntity.ok("User created : " + user.getUserName());
 	}
 

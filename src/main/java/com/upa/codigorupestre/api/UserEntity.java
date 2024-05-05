@@ -27,6 +27,10 @@ public class UserEntity {
 	
 	private String password;
 	
+	private String planet;
+	
+	private boolean active;
+	
 	
 	
 	
